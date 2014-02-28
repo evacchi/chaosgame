@@ -2,10 +2,10 @@ module Vacchi.Fractals.Config where
 
 import Vacchi.Fractals.Types
 import Vacchi.Fractals.Presets
-import Vacchi.Fractals.Variations
 
 
 
+configuration :: Fractal
 configuration = 
 	sierpinski
 	-- sierpinski_variated
@@ -14,11 +14,12 @@ configuration =
 	-- heighway
 	-- heighway_variated
 
+params :: Params
 params = Params {
 	animated   = False,
 	penSize = 1.02,
 	palette = (0,60),
 	alpha      = \hue -> hue*0.3,
-	saturation = \hue -> 0.7,
-	lightness  = \hue -> 0.5
+	saturation = \_   -> 0.7,
+	lightness  = \_   -> 0.5
 }

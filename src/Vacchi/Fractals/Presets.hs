@@ -5,6 +5,7 @@ import Vacchi.Fractals.Variations
 
 ------------------------------------------------------------------------------------
 
+sierpinski :: Fractal
 sierpinski =  Fractal {
 	fractal = 
 		[ Ifs (0.5, 0.0, 0) 	(0.0, 0.5, 0.0) (1/3)
@@ -16,7 +17,9 @@ sierpinski =  Fractal {
 	offsetY = -0.5
 }
 
+ :: Fractal
 
+sierpinski_variated :: Fractal
 sierpinski_variated =  Fractal {
 	fractal = 
 		[ IfsVar (0.5, 0.0, 0) 		(0.0, 0.5, 0.0) (1/3) swirl
@@ -27,6 +30,8 @@ sierpinski_variated =  Fractal {
 	offsetX = -0.3,
 	offsetY = -0.4
 }
+
+barnsley :: Fractal
 barnsley = Fractal {
 	fractal = 
 		[Ifs (0,0,0) 		(0,0.16,0)			0.01	-- 1%
@@ -39,6 +44,7 @@ barnsley = Fractal {
 	offsetY = -5
 }
 
+barnsley_variated :: Fractal
 barnsley_variated = Fractal {
 	fractal = 
 		[IfsVar (0,0,0) 		(0,0.16,0)			0.01	linear -- 1%
@@ -52,6 +58,7 @@ barnsley_variated = Fractal {
 }
 
 
+heighway :: Fractal
 heighway = 
 	let s = (1/(sqrt 2))
 		in Fractal {
@@ -67,6 +74,7 @@ heighway =
 		}
 
 
+heighway_variated :: Fractal
 heighway_variated = 
 	let s = (1/(sqrt 2))
 		in Fractal {
