@@ -2,10 +2,6 @@ module Vacchi.Fractals.ChaosGame where
 
 import Vacchi.Fractals.Types
 
-import Data.Colour.SRGB
-import Data.Colour.RGBSpace.HSL hiding (saturation,lightness)
-
-
 -- Calculates a set of points on the plain for the input IFS
 -- starting from the given input point
 -- and using a list of floats as a source of randomness
@@ -41,15 +37,17 @@ getColorFromIndex functionSystemList index =
 	(fromIntegral index) / (fromIntegral ((length functionSystemList) -1)) 
 
 -- choose function f with probability p
+chooseFunction :: Num a => [IFS] -> Float -> a
 chooseFunction xs floatVal =
 	function_choice' xs floatVal 0.0 0
 
 -- choose a function among the given list with probability p
 -- floatVal is considered as a random variabile in range [-1,1]
 -- so we partition the range accordingly
-function_choice' ((x@(Ifs _ _ p)):xs) floatVal float n =
+function_choice' :: Num a => [IFS] -> Float -> Float -> a -> a
+function_choice' ((Ifs _ _ p):xs) floatVal float n =
 	if floatVal < p+float then n else function_choice' xs floatVal (p+float) (n+1)
-function_choice' ((x@(IfsVar _ _ p _)):xs) floatVal float n =
+function_choice' ((IfsVar _ _ p _):xs) floatVal float n =
 	if floatVal < p+float then n else function_choice' xs floatVal (p+float) (n+1)
 
 function_choice' [] _ _ n = n-1

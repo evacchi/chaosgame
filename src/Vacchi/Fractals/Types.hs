@@ -50,12 +50,12 @@ ifs_def (x,y) (a,b,c) (d,e,f) = (a*x + b*y + c,   d*x + e*y + f)
 
 -- default implementation for non-variated IFS
 ifs :: (Float,Float) -> IFS -> (Float,Float)
-ifs point (Ifs param1 param2 p)  = 
+ifs point (Ifs param1 param2 _)  = 
 	let result = ifs_def point param1 param2
 		in (fst result, snd result)
 
 -- implementation for variated IFS
-ifs point (IfsVar param1 param2 p variation_function)  =
+ifs point (IfsVar param1 param2 _ variation_function)  =
 	let result = variation_function (ifs_def point param1 param2)
 		in (fst result, snd result)
 
